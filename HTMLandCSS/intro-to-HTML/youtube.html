@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    
+    <title>YouTube.com Clone</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!--Comment-->
+     
+   
+    <style>
+
+      .body{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .header{
+        height: 55px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(228, 228, 228);
+
+        z-index: 100;    
+
+
+        }
+        .thumbnail-row{
+          margin-bottom: 8px;
+          position: relative;
+        }
+
+        .video-info-grid{
+          display: grid;
+          grid-template-columns: 50px 1fr;
+        }
+        .thumbnail{
+          width: 100%;
+        }
+
+        .video-title{
+          margin-top: 0;
+          font-family: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          margin-bottom: 10px;
+        }
+
+        .video-stats{
+          font-size: 12px;
+          color: rgb(96, 96, 96);
+          margin-top: 0;
+        }
+        
+        .video-author {
+          font-size: 12px;
+          color: rgb(96, 96, 96);
+          margin-bottom: 4px;
+        }
+
+        .video-grid {
+          font-family: 'Times New Roman', Times, serif;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          column-gap: 16px;
+          row-gap: 40px;
+
+        }
+
+
+        @media (max-width: 750px){
+          .video-grid {grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        
+        @media(min-width: 751px) and (max-width:999px){
+          .video-grid{
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+        }
+
+        @media (min-width: 1000px){
+          .video-grid {grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+      }
+
+
+        .video-time{
+          background-color: black;
+          color: white;
+          position: absolute;
+        }
+        .profile-picture{
+          width: 36px;
+          border-radius: 40px;
+        }
+        .body{
+          margin: 0;
+          padding-top: 80px;
+          padding-left: 96px;
+          padding-right: 24px;
+          background-color: rgb(248, 248, 248);
+        }
+        .left-section{
+          
+          align-items: center;
+          display: flex;
+        }
+        .middle-section{
+          flex: 1;
+          margin-left: 70px;
+          margin-right: 35px;
+          max-width: 600px; 
+          display: flex;
+          align-items: center;
+        }
+        .right-section{
+          width: 180px;
+          margin-right: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-shrink: 0;
+        }
+        .hamburger-menu{
+          height: 24px;
+          margin-left: 20px;
+          margin-right: 24px;
+          cursor: pointer;
+        }
+        .youtube-logo{
+          height: 20px;
+          cursor: pointer;
+        }
+        .search-button{
+          height: 40px;
+          width: 66px;
+          background-color: rgb(240, 240, 240);
+          border-width: 1px;
+          border-style: solid;
+          border-color: rgb(192, 192, 192);
+          margin-left: -1px;
+          margin-right: 10px;
+
+          
+          cursor: pointer;
+        }
+
+        .search-button,
+        .voice-search-button,
+        .upload-icon-container,
+        .youtube-apps-container,
+        .notifications-icon-container,
+        .current-user-profile-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+        }
+
+        .search-button .tooltip,
+        .voice-search-button .tooltip,
+        .upload-icon-container .tooltip,
+        .youtube-apps-container .tooltip,
+        .notifications-icon-container .tooltip,
+        .current-user-profile-container .tooltip {
+          font-family: Roboto, Arial;
+          position: absolute;
+          background-color: gray;
+          color: white;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          padding-left: 8px;
+          padding-right: 8px;
+          border-radius: 2px;
+          font-size: 12px;
+          bottom: -30px;
+          opacity: 0;
+          transition: opacity 0.15s;
+          pointer-events: none;
+          white-space: nowrap;
+        }
+
+        .search-button:hover .tooltip,
+        .voice-search-button:hover .tooltip,
+        .upload-icon-container:hover .tooltip,
+        .youtube-apps-container:hover .tooltip,
+        .notifications-icon-container:hover .tooltip,
+        .current-user-profile-container:hover .tooltip {
+          opacity: 1;
+        }
+
+
+
+        .voice-search-button{
+          width: 40px;
+          height: 40px;
+          border-radius: 20px;
+          border: none;
+          background-color: rgb(245, 245, 245);
+          cursor: pointer;
+        }
+        .search-bar{
+          flex: 1;
+          height: 35px;
+          font-size: 16px;
+          border: 1px solid rgb(192, 192, 192);
+          border-radius: 2px;
+          box-shadow: inset 1px 2px 3px rgb(0, 0, 0, 0.05);
+          width: 0;
+        }
+        .search-bar::placeholder{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          padding-left: 10px;
+        }
+        .search-icon{
+          height: 25px;
+        }
+        .voice-search-icon{
+          height: 24px;
+
+        }
+        .search-button, 
+        .voice-search-button{
+          position: relative;
+        }
+
+        .upload-icon{
+          height: 24px;
+          cursor: pointer;
+        }
+        .youtube-apps-icon{
+          height: 24px;
+          cursor: pointer;
+        }
+        .notifications-icon{
+          height: 24px;
+        }
+        .notifications-icon-container{
+          position: relative;
+          cursor: pointer;
+          
+        }
+        .notifications-count{
+          position:absolute;
+          top: -2px;
+          right: -5px;
+          background-color: rgb(149, 6, 6);
+          color: white;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 11px;
+          padding-left: 5px;
+          padding-right: 5px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          border-radius: 10px;
+        }
+        .current-user-picture{
+          height: 32px;
+          border-radius: 16px;
+          cursor: pointer;
+        }
+        .sidebar{
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          top: 55px;
+          width: 72px;
+          background-color: white;
+          z-index: 200;
+          padding-top: 5px;
+          cursor: pointer;
+
+        }
+        .sidebar-link{
+          display: flex;
+          justify-content: center; /*Horizontal center*/
+          align-items: center; /*Vertical center*/
+          height: 74px;
+          flex-direction: column;
+          
+        }
+        .sidebar-link:hover{
+          background-color: rgb(235, 235, 235);
+        }
+        .sidebar-link img{
+          height: 24px;
+          margin-bottom: 5px;
+          
+        }
+
+        .sidebar-link div{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 10px;
+        }
+
+
+        .video-time{
+          background-color: black;
+          color: white;
+          position: absolute;
+          bottom: 8px;
+          right: 5px;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          padding: 4px;
+          /*margin: 4px;*/
+          border-radius: 2px;
+        }
+        .thumbnail-row{
+          margin-bottom: 12px;
+          position: relative;
+        }
+    </style>
+
+  </head>
+    <body class="body">
+      <div class="header">
+        <div class="left-section">
+          <img class="hamburger-menu" src="thumbnails/hamburger-menu.svg">
+          <div class="home-container">
+            <img class="youtube-logo" src="thumbnails/youtube-logo.svg">
+          </div>
+          
+        </div>
+
+        <div class="middle-section">
+          <input class="search-bar" type="text" placeholder="Search">
+          <button class="search-button">
+            <img class="search-icon" src="thumbnails/search.svg">
+            <div class="tooltip">Search</div>
+        </button>
+          <button class="voice-search-button">
+            <img class="voice-search-icon" src="thumbnails/voice-search-icon.svg">
+            <div class="tooltip">Search with your voice</div>
+          </button>
+        </div>
+
+        <div class="right-section">
+          <div class="upload-icon-container">
+            <img class="upload-icon" src="thumbnails/upload.svg">
+            <div class="tooltip">Create</div>
+          </div>
+
+          <div class="youtube-apps-container">
+            <img class="youtube-apps-icon" src="thumbnails/youtube-apps.svg">
+            <div class="tooltip">YouTube Apps</div>
+          </div>
+          
+          
+
+          <div class="notifications-icon-container">
+            <img class="notifications-icon" src="thumbnails/notifications.svg">
+            <div class="tooltip">Notifications</div>
+            <div class="notifications-count">3</div>
+          </div>
+          <div class="current-user-profile-container">
+            <img class="current-user-picture" src="thumbnails/WhatsApp Image 2024-03-05 at 00.40.48_c33505b6.jpg">
+            <div class="tooltip">Profile</div>
+            </div>
+          
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="sidebar-link">
+          <img src="thumbnails/home.svg">
+          <div>Home</div>
+        </div>
+        <div class="sidebar-link">
+          <img src="thumbnails/explore.svg">
+          <div>Explore</div>
+        </div>
+        <div class="sidebar-link">
+          <img src="thumbnails/subscriptions.svg">
+          <div>Subscriptions</div>
+        </div>
+        <div class="sidebar-link">
+          <img src="thumbnails/originals.svg">
+          <div>originals</div>
+        </div>
+        <div class="sidebar-link">
+          <img src="thumbnails/youtube-music.svg">
+          <div>YouTube Music</div>
+        </div>
+        <div class="sidebar-link">
+          <img src="thumbnails/library.svg">
+          <div>Library</div>
+        </div>
+      </div>
+      
+      <div class="video-grid">
+        <div class="video-preview">
+          <div class="thumbnail-row">
+            <img class="thumbnail" src="thumbnails/thumbnail-1.webp">
+            <div class="video-time">
+              14:20
+            </div>
+          </div>
+        <div class="video-info-grid">
+            <div class="channel-picture">
+              <img class="profile-picture" src="thumbnails/channel-1.jpeg">
+              
+            </div>
+        <div class="video-info">
+            <p class="video-title">
+              Talking Tech and AI with Google CEO Sundar Pichai!
+              </p>
+              <p class="video-author">Marques Brownlee</p>
+              <p class="video-stats">3.4M views &#183; 6 months ago</p>
+          </div>          
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail-2.webp">
+          <div class="video-time">
+            8:22
+          </div>
+        </div>
+      <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="profile-picture" src="thumbnails/channel-2.jpeg">
+          </div>
+      <div class="video-info">
+          <p class="video-title">
+            Try Not To Laugh Challange # 9
+            </p>
+            <p class="video-author">Markiplier</p>
+            <p class="video-stats">19M views &#183; 4 years ago</p>
+        </div>          
+      </div>
+    </div>
+
+
+    <div class="video-preview">
+      <div class="thumbnail-row">
+        <img class="thumbnail" src="thumbnails/thumbnail-3.webp">
+        <div class="video-time">
+          9:13
+        </div>
+      </div>
+    <div class="video-info-grid">
+        <div class="channel-picture">
+          <img class="profile-picture" src="thumbnails/channel-3.jpeg">
+        </div>
+    <div class="video-info">
+        <p class="video-title">
+          Crazy Tik Toks Taken Moments Before DISASTER
+          </p>
+          <p class="video-author">SSSniperWolf</p>
+          <p class="video-stats">12M views &#183; 1 year ago</p>
+      </div>          
+    </div>
+  </div>
+
+  <div class="video-preview">
+    <div class="thumbnail-row">
+      <img class="thumbnail" src="thumbnails/thumbnail-4.webp">
+      <div class="video-time">
+        22:09
+      </div>
+    </div>
+  <div class="video-info-grid">
+      <div class="channel-picture">
+        <img class="profile-picture" src="thumbnails/channel-4.jpeg">
+      </div>
+  <div class="video-info">
+      <p class="video-title">
+        The Simplest Math Problem No One Can Solve - Collatz Conjecture
+        </p>
+        <p class="video-author">Veritasium</p>
+        <p class="video-stats">18M views &#183; 4 months ago</p>
+    </div>          
+  </div>
+</div>
+
+
+
+<div class="video-preview">
+  <div class="thumbnail-row">
+    <img class="thumbnail" src="thumbnails/thumbnail-5.webp">
+    <div class="video-time">
+      11:17
+    </div>
+  </div>
+<div class="video-info-grid">
+    <div class="channel-picture">
+      <img class="profile-picture" src="thumbnails/channel-5.jpeg">
+    </div>
+<div class="video-info">
+    <p class="video-title">
+      Kadane's Algorithm to Maximum Sum Subarray Problem
+      </p>
+      <p class="video-author">Cs Dojo</p>
+      <p class="video-stats">519K views &#183; 5 years ago</p>
+  </div>          
+</div>
+</div>
+
+<div class="video-preview">
+<div class="thumbnail-row">
+  <img class="thumbnail" src="thumbnails/thumbnail-6.webp">
+  <div class="video-time">
+    19:59
+  </div>
+</div>
+<div class="video-info-grid">
+  <div class="channel-picture">
+    <img class="profile-picture" src="thumbnails/channel-6.jpeg">
+  </div>
+<div class="video-info">
+  <p class="video-title">
+    Anything You Can Fit In The Circle I’ll Pay For
+    </p>
+    <p class="video-author">MrBeast</p>
+    <p class="video-stats">141M views &#183; 1 year ago</p>
+</div>          
+</div>
+</div>
+
+
+
+
+
+      </div>    
+    </body>
+  </html>

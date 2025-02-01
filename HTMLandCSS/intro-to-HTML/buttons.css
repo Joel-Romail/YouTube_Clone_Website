@@ -1,0 +1,152 @@
+.subscribe-button {
+  background-color: rgb(200, 0, 0);
+  color: white;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  transition: opacity 0.15s;
+  vertical-align: top;
+}
+.subscribe-button:hover{
+  opacity: 0.8;
+}
+.subscribe-button:active{
+  opacity: 0.5;
+}
+.join-button {
+  background-color: white;
+  border-color: rgb(41, 118, 211);
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(41, 118, 211);
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.15s, 
+  color 0.15s;
+}
+.join-button:hover{
+  background-color: rgb(41, 118, 211);
+  color: white;
+}
+.join-button:active{
+  opacity: 0.7;
+}
+
+.tweet-button {
+  background-color: rgb(2, 135, 255);
+  border: none;
+  color: white;
+  height: 40px;
+  width: 74px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: box-shadow 0.15s;
+}
+.tweet-button:hover{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+.request-button {
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 100px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.cart-button {
+  background-color: rgb(255, 216, 20);
+  color: black;
+  width: 130px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.signup-button {
+  background-color: rgb(46, 164, 79);
+  color: white;
+  height: 40px;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+.getstarted-button {
+  background-color: rgb(121, 82, 179);
+  color: white;
+  width: 110px;
+  height: 40px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+}
+.download-button {
+  background-color: rgb(255, 255, 255);
+  color: gray;
+  width: 110px;
+  height: 40px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 15px;
+  border-width: 1px;
+  border-style: solid;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.apply-button {
+  background-color: rgb(10, 102, 194);
+  color: white;
+  width: 300px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+.save-button{
+  background-color: white;
+  color: rgb(10, 102, 194);
+  height: 40px;
+  width: 80px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 15px;
+  border-color: rgb(10, 102, 194);
+  cursor: pointer;
+}
+.buy-button {
+  background-color: orange;
+  color: black;
+  width: 130px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+.div1 {
+  margin-bottom: 10px;
+}
+.div3{
+  margin-top: 20px;
+}
